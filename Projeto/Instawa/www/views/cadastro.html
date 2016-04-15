@@ -1,0 +1,22 @@
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Cadastro</h1>
+</ion-header-bar>
+
+<ion-content>
+
+<div class="list">
+  <label class="item item-input">
+    <input type="text" ng-model="dadosUsuario.nome" placeholder="Nome">
+  </label>
+  <label class="item item-input">
+    <input type="email" ng-model="dadosUsuario.email" placeholder="E-mail">
+  </label>
+  <label class="item item-input">
+    <input type="password"  ng-model="dadosUsuario.senha" placeholder="Senha">
+  </label>
+
+  <button class="button button-stable" ng-click="cadastrar()">
+    Cadastrar
+  </button>
+
+</ion-content>

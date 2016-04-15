@@ -1,0 +1,47 @@
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Postagem</h1>
+  <!-- <div class="buttons">
+    <button class="button" ng-click="postar()">
+      Postar
+    </button>
+  </div> -->
+</ion-header-bar>
+
+<ion-content>
+
+  <!-- Tirar Foto / Trocar -->
+  <div class="row">
+    <div class="col">
+      <button class="button button-energized button-full button-small" ng-click="coletarFoto()">
+        Coletar Foto
+      </button>
+    </div>
+  </div>
+
+  <!-- Foto a ser postada -->
+  <div class="row">
+    <div class="col">
+      <img ng-src="{{postAPostar.imagemPost}}" ng-show="postAPostar.imagemPost" style="width: 100%;" />
+      <span ng-show="!postAPostar.imagemPost">
+        Nenhuma Foto Selecionada
+      </span>
+
+    </div>
+  </div>
+
+
+  <div class="list list-inset">
+    <label class="item item-input">
+      <input type="text" ng-model="postAPostar.descricaoPost" placeholder="Descrição do post" />
+    </label>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button class="button button-full button-large button-dark" ng-click="postar()">
+        POSTAR
+      </button>
+    </div>
+  </div>
+
+</ion-content>

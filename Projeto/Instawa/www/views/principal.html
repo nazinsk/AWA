@@ -1,0 +1,23 @@
+<ion-tabs class="tabs-positive tabs-icon-top">
+
+  <ion-tab title="Feed" icon="ion-images" on-select="selecionaTab(0)">
+    <ion-view>
+      <div ng-controller="FeedCtrl" ng-include="'views/feed.html'"></div>
+    </ion-view>
+  </ion-tab>
+
+  <ion-tab title="Postar" icon="ion-aperture" onselect-="selecionaTab(1)">
+    <ion-view>
+      <div ng-controller="PostCtrl" ng-include="'views/post.html'"></div>
+    </ion-view>
+
+  </ion-tab>
+
+  <ion-tab title="Perfil" icon="ion-person" on-select="selecionaTab(2)">
+    <ion-view>
+      <div ng-controller="PerfilCtrl" ng-include="'views/perfil.html'"></div>
+    </ion-view>
+
+  </ion-tab>
+
+</ion-tabs>

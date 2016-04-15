@@ -1,0 +1,61 @@
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Perfil</h1>
+  <div class="buttons">
+    <button class="button" ng-click="sair()">
+      Sair
+    </button>
+  </div>
+</ion-header-bar>
+
+<ion-content>
+  <div class="row">
+    <div class="col">
+      <div class="item-avatar" style="height: 70px;">
+        <img ng-click="trocarFoto()" ng-src="{{usuarioLogado.foto}}" style="max-width: 70px; max-height: 70px;">
+      </div>
+    </div>
+    <div class="col col-75">
+      <b>Nome:</b> {{usuarioLogado.nome}}
+      <br />
+      <b>Posts:</b> {{usuarioLogado.quantidadePosts}}
+      <br />
+      <button class="button button-small button-assertive" ng-click="alterarDados()">
+       Alterar Dados
+      </button>
+    </div>
+  </div>
+
+  <ion-refresher
+      pulling-text="Puxe para atualizar..."
+      on-refresh="atualizar()">
+  </ion-refresher>
+  <ion-list>
+    <ion-item ng-repeat="post in usuarioPosts">
+
+      <div class="row energized" style="height: 50px;">
+        <div class="col">
+          <div class="item-avatar" style="display: inline; padding-left: 40px;">
+            <img ng-src="{{post.usuarioDados.foto}}" style="max-width: 40px; max-height: 40px;">
+          </div>
+          {{post.usuarioDados.nome}}
+          <span class="item-note">{{post.data | date:'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+      </div>
+
+      <img ng-src="{{post.imagem}}" alt="" style="width: 100%;"/>
+
+      <div>
+        <small>{{post.descricao}}</small>
+      </div>
+      <div class="row energized" style="height: 50px;">
+        <div class="col">
+          <button class="button button-assertive button-full button-small" ng-click="excluir(post)">
+            Excluir post
+          </button>
+        </div>
+      </div>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>

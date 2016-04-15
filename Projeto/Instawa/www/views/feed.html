@@ -1,0 +1,45 @@
+<ion-header-bar class="bar-positive" ng-click="scrollTop()">
+  <h1 class="title">Feed</h1>
+  <div class="buttons">
+    <button class="button" ng-click="atualizarDoInicio()">
+      Atualizar
+    </button>
+  </div>
+</ion-header-bar>
+
+<ion-content>
+
+  <ion-refresher
+      pulling-text="Puxe para atualizar..."
+      on-refresh="atualizarDoInicio()">
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item ng-repeat="post in posts">
+
+      <div class="row energized" style="height: 50px;" ng-click="mostrarModalUsuario(post.usuarioDados)">
+        <div class="col">
+          <div class="item-avatar" style="display: inline; padding-left: 40px;">
+            <img ng-src="{{post.usuarioDados.foto}}" style="max-width: 40px; max-height: 40px;">
+          </div>
+          {{post.usuarioDados.nome}}
+          <span class="item-note">{{post.data | date:'dd/MM/yyyy HH:mm'}}</span>
+        </div>
+      </div>
+
+      <img ng-src="{{post.imagem}}" alt="" style="width: 100%;"/>
+
+      <div>
+        <small>{{post.descricao}}</small>
+      </div>
+
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll
+    on-infinite="atualizar()"
+    ng-if="!semMaisDados"
+    distance="1%">
+  </ion-infinite-scroll>
+
+</ion-content>
