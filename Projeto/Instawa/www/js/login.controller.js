@@ -1,6 +1,9 @@
 angular.module('instawa')
 .controller('LoginCtrl', function ($scope, $rootScope, $state, $cordovaToast, USUARIOS, SEGURANCA, $ionicLoading){
 
+  if(SEGURANCA._estaLogado())
+    $state.go('principal');
+
   $scope.dadosLogin = {};
 
   $scope.login = function() {
