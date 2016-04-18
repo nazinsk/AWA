@@ -18,16 +18,16 @@ angular.module('instawa')
     }
 
     $ionicLoading.show();
+
     USUARIOS._login($scope.dadosLogin.email, $scope.dadosLogin.senha)
       .then(
         function(res) {
           SEGURANCA._gravaLogin(res.data);
-          $state.go('principal');
           $ionicLoading.hide();
           $rootScope.$emit('login');
+          $state.go('principal');
         },
         function(res) {
-          console.log(res);
           $cordovaToast.showLongBottom('Usuário ou senha incorretos, tente novamente.');
           $ionicLoading.hide();
         }

@@ -1,5 +1,5 @@
 angular.module('instawa')
-.controller('PerfilCtrl', function ($scope, $rootScope, $state, SEGURANCA, USUARIOS, POSTS, $ionicLoading, $ionicActionSheet, $cordovaCamera, $ionicPopup){
+.controller('PerfilCtrl', function ($scope, $rootScope, $state, SEGURANCA, USUARIOS, POSTS, $ionicLoading, $ionicActionSheet, $cordovaCamera, $ionicPopup, $cordovaToast){
 
   $scope.usuarioLogado = SEGURANCA._dadosUsuarioLogado();
   $scope.usuarioPosts = [];
@@ -52,28 +52,26 @@ angular.module('instawa')
     $ionicPopup.confirm({
      title: 'Excluir Post',
      template: 'Deseja excluir o post? <br/>Não poderá ser desfeito.'
-   }).then(function(res) {
-     if(res) {
-       //SIM
+     }).then(function(res) {
+       if(res) {
+         //SIM
+         $ionicLoading.show();
 
-       $ionicLoading.show();
+         POSTS._excluir(post.ID)
+         .then(
+           function(res) {
+             $scope.usuarioPosts.splice($scope.usuarioPosts.indexOf(post), 1);
+             $ionicLoading.hide();
+             $cordovaToast.showLongBottom('Post removido.');
+           }, function(err) {
+             $cordovaToast.showLongBottom('Erro um erro ao excluir o post.');
+           });
 
-       POSTS._excluir(post.ID)
-       .then(
-         function(res) {
-           $scope.usuarioPosts.splice($scope.usuarioPosts.indexOf(post), 1);
-           $ionicLoading.hide();
-           $scope.$broadcast('scroll.refreshComplete');
-           $cordovaToast.showLongBottom('Post removido.');
-         }, function(err) {
-           $cordovaToast.showLongBottom('Erro um erro ao excluir o post.');
-         });
-
-     } else {
-       //NÃO
-     }
-   });
-  }
+       } else {
+         //NÃO
+       }
+     });
+    }
 
 
 
@@ -137,18 +135,14 @@ angular.module('instawa')
 
   function atualizaFeed() {
 
-    $ionicLoading.show();
-
     POSTS._listarUsuario($scope.usuarioLogado.ID)
     .then(
       function(res) {
         $scope.usuarioPosts = res.data;
-        $ionicLoading.hide();
         $scope.$broadcast('scroll.refreshComplete');
       },
       function(res) {
         $cordovaToast.showLongBottom('Erro ao buscar as postagens do usuário.');
-        $ionicLoading.hide();
         $scope.$broadcast('scroll.refreshComplete');
       }
     );

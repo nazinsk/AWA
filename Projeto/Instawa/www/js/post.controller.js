@@ -1,6 +1,6 @@
 angular.module('instawa')
 .controller('PostCtrl', function ($scope, SEGURANCA, POSTS, $ionicLoading, $ionicActionSheet, $cordovaCamera, $cordovaToast, $ionicScrollDelegate){
-  //$scope.descricaoPost = '';
+
   $scope.postAPostar = {};
 
   $scope.coletarFoto = function() {

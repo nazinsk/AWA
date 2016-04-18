@@ -8,6 +8,7 @@ angular.module('instawa')
   };
 
   $scope.cadastrar = function() {
+
     if(!$scope.dadosUsuario.nome){
       $cordovaToast.showLongBottom('Informe seu nome');
       return;
@@ -27,9 +28,9 @@ angular.module('instawa')
       .then(
         function(res) {
           SEGURANCA._gravaLogin(res.data);
-          $state.go('principal');
           $ionicLoading.hide();
           $rootScope.$emit('login');
+          $state.go('principal');
         },
         function(res) {
           $cordovaToast.showLongBottom('Ocorreu um erro, tente novamente.');

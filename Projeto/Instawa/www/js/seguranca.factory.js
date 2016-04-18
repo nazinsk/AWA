@@ -11,10 +11,10 @@ angular.module('instawa')
   function _estaLogado() {
     leDados();
     if($rootScope.usuarioLogadoDados){
-      return true
+      return true;
     }
     else {
-      return true
+      return false;
     }
   }
 

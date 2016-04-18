@@ -1,5 +1,5 @@
 angular.module('instawa')
-.controller('FeedCtrl', function ($scope, POSTS, $ionicPopup, $ionicScrollDelegate, $ionicLoading){
+.controller('FeedCtrl', function ($scope, POSTS, $ionicPopup, $ionicScrollDelegate){
 
   $scope.posts = [];
   var pagina = 0;
@@ -33,8 +33,6 @@ angular.module('instawa')
 
   $scope.atualizar = function() {
 
-    $ionicLoading.show();
-
     pagina++;
 
     POSTS._listarFeed(pagina)
@@ -42,7 +40,6 @@ angular.module('instawa')
       function(res) {
         if(res.data.length > 0){
           angular.forEach(res.data, function(value, key) {
-            console.log(value);
             $scope.posts.push(value);
           });
         }
@@ -51,13 +48,11 @@ angular.module('instawa')
         }
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.refreshComplete');
-        $ionicLoading.hide();
       },
       function(res) {
         $cordovaToast.showLongBottom('Erro ao buscar as postagens.');
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.refreshComplete');
-        $ionicLoading.hide();
       }
     );
   }
