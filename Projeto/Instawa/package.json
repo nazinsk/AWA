@@ -15,9 +15,19 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    "cordova-plugin-x-toast",
+    "cordova-plugin-camera",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-device",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist",
+    "ionic-plugin-keyboard",
     {
-      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
-      "id": "cordova-plugin-whitelist"
+      "variables": {
+        "SENDER_ID": "1038368474519"
+      },
+      "locator": "phonegap-plugin-push",
+      "id": "phonegap-plugin-push"
     }
   ],
   "cordovaPlatforms": [

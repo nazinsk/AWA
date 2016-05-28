@@ -21,6 +21,27 @@ angular.module('instawa', ['ionic', 'ngCordova'])
       StatusBar.styleDefault();
     }
   });
+
+  var push = new Ionic.Push({
+    "debug": true,
+    "onNotification": function(notification) {
+      var payload = notification.payload;
+      console.log(notification, payload);
+    },
+    "onRegister": function(data) {
+      console.log('TOKEN:'+ data.token);
+      push.saveToken(data.token);
+    },
+    "pluginConfig": {
+      "ios": {
+        "badge": true,
+        "sound": true,
+        "alert": true
+       }
+    }
+  });
+
+  push.register();
 })
 
 //Rotas
